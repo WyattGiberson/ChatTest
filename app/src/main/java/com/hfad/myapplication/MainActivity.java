@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
         RecyclerView rv = findViewById(R.id.recyclerView);
 
         //adapter
-        MyAdapter adapter = new MyAdapter(getSupportFragmentManager());
+        MessageAdapter adapter = new MessageAdapter(getSupportFragmentManager());
         rv.setAdapter(adapter);
 
         //manager connects the above 2
