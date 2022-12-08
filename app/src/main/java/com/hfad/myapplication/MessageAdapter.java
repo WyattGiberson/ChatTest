@@ -60,23 +60,24 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
     }
     abstract class MessageViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private TextView txtMessage;
-
+        private TextView currentTime;
         private int currentPositionInList = -1;
         private Message currentMessage = null;
 
         public MessageViewHolder(@NonNull View view) {
             super(view);
 
+            currentTime = view.findViewById(getTimeViewID());
             txtMessage = view.findViewById(getTextViewID());
-
             view.setClickable(true);
             view.setOnClickListener(this);
         }
-
+        public abstract int getTimeViewID();
         public abstract int getTextViewID();
 
         public void setData(Message m, int position) {
             txtMessage.setText(m.getMessage());
+            currentTime.setText(m.getTime());
             currentPositionInList = position;
             currentMessage = m;
         }
@@ -92,9 +93,8 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
             super(view);
         }
 
-        public int getTextViewID(){
-            return R.id.txt_msgReceived;
-        }
+        public int getTimeViewID(){return R.id.time;}
+        public int getTextViewID(){return R.id.txt_msgReceived;}
 
     }
 
@@ -103,7 +103,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
         public SentMessageViewHolder(@NonNull View view) {
             super(view);
         }
-
+        public int getTimeViewID(){return R.id.time;}
         public int getTextViewID(){
             return R.id.txt_msgSent;
         }

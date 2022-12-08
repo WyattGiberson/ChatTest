@@ -28,8 +28,22 @@ public class DataBase {
         messagesSent.add("Study for Hist Final");
         messagesSent.add("Last");
 
+        ArrayList<String> time = new ArrayList<String>();
+        time.add("10:00");
+        time.add("10:10");
+        time.add("10:30");
+        time.add("11:00");
+        time.add("11:20");
+        time.add("12:00");
+        time.add("12:01");
+        time.add("12:02");
+        time.add("12:03");
+        time.add("12:04");
+        time.add("12:05");
+
+
         for (int i=0; i < messagesSent.size(); i++){
-            messages.add(new Message(messagesSent.get(i), Message.TYPE_SENT));
+            messages.add(new Message(messagesSent.get(i), time.get(i), Message.TYPE_SENT));
         }
         for (int i=0; i < messagesSent.size(); i = i + 3){
             messages.get(i).setType(Message.TYPE_RECEIVED);

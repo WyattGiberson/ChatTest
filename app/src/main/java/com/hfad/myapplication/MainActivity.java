@@ -10,12 +10,18 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
 
     private ImageView imvSend;
     private EditText newMessage;
+    Date currentTime;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,8 +33,9 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 ArrayList<Message> messages;
                 messages = DataBase.getMessages();
-                String insertMessage = newMessage.getText().toString();
-                messages.add(new Message(insertMessage, Message.TYPE_SENT));
+                Calendar c = Calendar.getInstance();
+                String timeComp = c.get(Calendar.HOUR)+":"+c.get(Calendar.MINUTE);
+                messages.add(new Message(newMessage.getText().toString(), timeComp, Message.TYPE_SENT));
                 hideKeyboard(view);
             }
             private void hideKeyboard(View view) {
